@@ -145,6 +145,9 @@ void BOARD_InitPins(void)
     /* PORTB17 (pin 63) is configured as UART0_TX */
     PORT_SetPinMux(PORTB, 17U, kPORT_MuxAlt3);
 
+    /* PORTB21 (pin 71) is configured as PTB21 */
+    PORT_SetPinMux(PORTB, 21U, kPORT_MuxAsGpio);
+
     /* PORTB22 (pin 68) is configured as PTB22 */
     PORT_SetPinMux(PORTB, 22U, kPORT_MuxAsGpio);
 
