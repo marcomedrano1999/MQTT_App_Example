@@ -434,8 +434,8 @@ void publish_battery_level(void *ctx)
 
     PRINTF("Going to publish to the topic \"%s\"...\r\n", topic);
 
-    mqtt_publish(mqtt_client, topic, message, strlen(message), 1, 0, mqtt_message_published_cb, (void *)topic);
-
+    mqtt_publish(mqtt_client, topic, message, strlen(message), 1, 0,
+    		mqtt_message_published_cb, (void *)topic);
 }
 
 /*!
@@ -552,7 +552,7 @@ static void app_thread(void *arg)
 	robot_coords.y = Y_BASE;
 	base_coords.x = X_BASE;
 	base_coords.y = Y_BASE;
-	Robot_State_t robot_state = ROBOT_STATE_COLLECTING;
+	Robot_State_t robot_state = ROBOT_STATE_BASE;
 	status_t status;
 	uint32_t data[2];
 	uint8_t app_idx = 0;
@@ -651,7 +651,6 @@ static void app_thread(void *arg)
 			}
 			else
 			{
-
 				// Simulate the localization of a trash piece
 				status = RNGA_GetRandomData(RNG, data, sizeof(data));
 
@@ -704,7 +703,6 @@ static void app_thread(void *arg)
 			{
 				// Switch state to return to base
 				robot_state = ROBOT_STATE_RETURNING_TO_BASE;
-				break;
 			}
 
 			break;
